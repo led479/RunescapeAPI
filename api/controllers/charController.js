@@ -50,3 +50,11 @@ exports.delete_a_char = function(req, res) {
         res.json({ message: 'Char successfully deleted' });
     });
 };
+
+exports.char_total_lvl = function(req, res) {
+    Char.findById(req.params.charId, function(err, char) {
+        if (err)
+            res.send(err);
+        res.json(char.att_lvl + char.str_lvl + char.def_lvl + char.wc_lvl + char.rc_lvl);
+    });
+};
