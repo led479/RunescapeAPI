@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var CharSchema = new Schema({
     login: {
         type: String,
+        unique: true,
         required: 'Digite o login'
     },
     level: {

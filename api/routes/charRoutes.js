@@ -8,11 +8,11 @@ module.exports = function(app) {
         .post(charList.create_a_char);
 
 
-    app.route('/chars/:charId')
+    app.route('/chars/:login')
         .get(charList.read_a_char)
         .put(charList.update_a_char)
         .delete(charList.delete_a_char);
 
-    app.route('/chars/:charId/total_lvl')
+    app.route('/chars/:login/total_lvl')
         .get(charList.char_total_lvl);
 };
