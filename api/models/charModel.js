@@ -247,4 +247,8 @@ var CharSchema = new Schema({
 //     return sumValues(this.level);
 // };
 
+CharSchema.methods.expToLvl99 = function(skill) {
+    return 13034431 - this['stats'][skill]['experience'];
+};
+
 module.exports = mongoose.model('Chars', CharSchema);

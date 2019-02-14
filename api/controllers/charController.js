@@ -66,7 +66,6 @@ exports.import_char = function(req, res) {
         } else {
             res.send('bugou algo');
         }
-
     })
 }
 
