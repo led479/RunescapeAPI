@@ -3,12 +3,12 @@
 
 var mongoose = require('mongoose'),
     Char = mongoose.model('Chars');
-const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
+
 
 exports.list_all_chars = function(req, res) {
-    Char.find({}, function(err, task) {
+    Char.find({}, function(err, chars) {
         if (err) res.send(err);
-        res.json(task);
+        res.json(chars);
     });
 };
 
@@ -25,7 +25,7 @@ exports.create_a_char = function(req, res) {
 exports.read_a_char = function(req, res) {
     Char.findOne({ 'login': req.params.login }, function(err, char) {
         if (err) res.send(err);
-        res.json(char);
+        res.json(Object.assign(char.toJSON(), { 'total_lvl': char.totalLvl() }));
     });
 };
 
@@ -49,7 +49,7 @@ exports.delete_a_char = function(req, res) {
 exports.char_total_lvl = function(req, res) {
     Char.findOne({ 'login': req.params.login }, function(err, char) {
         if (err) res.send(err);
-        res.json({ "total_lvl": sumValues(char.level) });
+        res.json({ "total_lvl": char.totalLvl() });
     });
 };
 

@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
 
 
 var CharSchema = new Schema({
@@ -100,5 +101,8 @@ var CharSchema = new Schema({
         }
     }
 });
+CharSchema.methods.totalLvl = function () {
+    return sumValues(this.level)
+};
 
 module.exports = mongoose.model('Chars', CharSchema);
