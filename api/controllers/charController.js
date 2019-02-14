@@ -8,7 +8,9 @@ var mongoose = require('mongoose'),
 exports.list_all_chars = function(req, res) {
     Char.find({}, function(err, chars) {
         if (err) res.send(err);
-        res.json(chars);
+        res.json(chars.map((char) => {
+            return Object.assign(char.toJSON(), { 'total_lvl': char.totalLvl() });
+        }));
     });
 };
 
