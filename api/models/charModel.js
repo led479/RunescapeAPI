@@ -20,6 +20,14 @@ var CharSchema = new Schema({
         type: Number,
         default: 1
     },
+    wc_lvl: {
+        type: Number,
+        default: 1
+    },
+    rc_lvl: {
+        type: Number,
+        default: 1
+    }
 });
 
 module.exports = mongoose.model('Chars', CharSchema);
