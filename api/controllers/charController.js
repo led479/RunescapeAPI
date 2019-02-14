@@ -47,18 +47,26 @@ exports.delete_a_char = function(req, res) {
 };
 
 
-var format = function(json, login) {
+var adiciona_login = function(json, login) {
     json['login'] = login
     return json
 }
 
 exports.import_char = function(req, res) {
     request('https://oldschool.tools/ajax/hiscore-stats/' + req.params.login, function (error, response, body) {
-        var new_char = new Char(format(JSON.parse(body), req.params.login));
-        new_char.save(function(err, char) {
-            if (err) res.send(err);
-            res.json(char);
-        });
+        let json_body = JSON.parse(body);
+        if (json_body['status'] === 'failure')
+            res.send({ 'error': json_body['message'] });
+        if (json_body['status'] === 'success') {
+            var new_char = new Char(adiciona_login(json_body, req.params.login));
+            new_char.save(function(err, char) {
+                if (err) res.send(err);
+                res.json(char);
+            });
+        } else {
+            res.send('bugou algo');
+        }
+
     })
 }
 
