@@ -8,25 +8,27 @@ var CharSchema = new Schema({
         type: String,
         required: 'Digite o login'
     },
-    att_lvl: {
-        type: Number,
-        default: 1
-    },
-    str_lvl: {
-        type: Number,
-        default: 1
-    },
-    def_lvl: {
-        type: Number,
-        default: 1
-    },
-    wc_lvl: {
-        type: Number,
-        default: 1
-    },
-    rc_lvl: {
-        type: Number,
-        default: 1
+    level: {
+        att: {
+            type: Number,
+            default: 1
+        },
+        str: {
+            type: Number,
+            default: 1
+        },
+        def: {
+            type: Number,
+            default: 1
+        },
+        wc: {
+            type: Number,
+            default: 1
+        },
+        rc: {
+            type: Number,
+            default: 1
+        }
     }
 });
 
