@@ -2,15 +2,14 @@
 
 
 var mongoose = require('mongoose'),
+    request = require('request'),
     Char = mongoose.model('Chars');
 
 
 exports.list_all_chars = function(req, res) {
     Char.find({}, function(err, chars) {
         if (err) res.send(err);
-        res.json(chars.map((char) => {
-            return Object.assign(char.toJSON(), { 'total_lvl': char.totalLvl() });
-        }));
+        res.json(chars);
     });
 };
 
@@ -27,7 +26,7 @@ exports.create_a_char = function(req, res) {
 exports.read_a_char = function(req, res) {
     Char.findOne({ 'login': req.params.login }, function(err, char) {
         if (err) res.send(err);
-        res.json(Object.assign(char.toJSON(), { 'total_lvl': char.totalLvl() }));
+        res.json(char);
     });
 };
 
@@ -48,10 +47,18 @@ exports.delete_a_char = function(req, res) {
 };
 
 
-exports.char_total_lvl = function(req, res) {
-    Char.findOne({ 'login': req.params.login }, function(err, char) {
-        if (err) res.send(err);
-        res.json({ "total_lvl": char.totalLvl() });
-    });
-};
+var format = function(json, login) {
+    json['login'] = login
+    return json
+}
+
+exports.import_char = function(req, res) {
+    request('https://oldschool.tools/ajax/hiscore-stats/' + req.params.login, function (error, response, body) {
+        var new_char = new Char(format(JSON.parse(body), req.params.login));
+        new_char.save(function(err, char) {
+            if (err) res.send(err);
+            res.json(char);
+        });
+    })
+}
 
