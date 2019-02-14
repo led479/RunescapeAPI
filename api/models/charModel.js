@@ -9,6 +9,7 @@ var CharSchema = new Schema({
         required: 'Digite o login'
     },
     level: {
+        type: Object,
         att: {
             type: Number,
             default: 1

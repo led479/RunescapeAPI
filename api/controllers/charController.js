@@ -3,6 +3,7 @@
 
 var mongoose = require('mongoose'),
     Char = mongoose.model('Chars');
+const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
 
 exports.list_all_chars = function(req, res) {
     Char.find({}, function(err, task) {
@@ -55,6 +56,7 @@ exports.char_total_lvl = function(req, res) {
     Char.findById(req.params.charId, function(err, char) {
         if (err)
             res.send(err);
-        res.json(char.att_lvl + char.str_lvl + char.def_lvl + char.wc_lvl + char.rc_lvl);
+        res.json({ "total_lvl": sumValues(char.level) });
     });
 };
+
