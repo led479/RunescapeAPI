@@ -3,7 +3,10 @@
     <div class="columns medium-4" v-for="char in chars" :key="char.login">
       <div class="charStats">
         <h2>Login: {{ char.login }}</h2>
-        <li v-for="(skillStats, skillName) in char.stats">{{ skillName }}: {{ skillStats }}</li>
+        <div>
+          <span v-for="(skillStats, skillName) in char.stats" :key="skillName">{{ skillName }}: {{skillStats.level}} </span>
+        </div>
+
       </div>
     </div>
   </div>
@@ -22,10 +25,8 @@ export default {
       chars: {}
     };
   },
-
   mounted() {
     this.getChars()
-
   },
   methods: {
     getChars() {
