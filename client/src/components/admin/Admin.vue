@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     postChar() {
-      if (this.login == "") {
+      if (this.char.login === "") {
         alert("Preencha o campo Login.");
         event.preventDefault();
       } else {
