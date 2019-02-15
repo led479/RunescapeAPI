@@ -1,8 +1,8 @@
 <template>
-  <div class="Menu">
+  <div class="menu">
     <aside class="menur" v-show="isMenuVisible">
       <router-link class="admin" to="/admin">
-        <i></i> Admin Chars
+        <a class="admin_link">Admin Chars</a>
       </router-link>
     </aside>
   </div>
@@ -18,5 +18,18 @@ export default {
 </script>
 
 <style>
-
+.menu {
+  background: linear-gradient(to right, #cb356b, #bd3f32);
+}
+.admin_link {
+  background: linear-gradient(to right, #d3cce35e, #e9e4f065);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.admin_link:hover {
+  text-decoration: none;
+}
 </style>
