@@ -1,9 +1,9 @@
 <template>
   <div class="Home">
-    <h1>ass</h1>
-    <div class="columns medium-4" v-for="(value, key) in results" :key="value.id">
+    <div class="columns medium-4" v-for="char in chars" :key="char.login">
       <div class="charStats">
-        <p>{{ key }}: {{ value }}</p>
+        <h2>Login: {{ char.login }}</h2>
+        <li v-for="(skillStats, skillName) in char.stats">{{ skillName }}: {{ skillStats }}</li>
       </div>
     </div>
   </div>
@@ -19,19 +19,24 @@ export default {
 
   data() {
     return {
-      results: {}
+      chars: {}
     };
+  },
+
+  mounted() {
+    this.getChars()
+
   },
   methods: {
     getChars() {
-      axios.get(`${baseAPiUrl}/chars`).then(response => {
-        this.results = response.data;
+      axios
+        .get(`${baseAPiUrl}/chars`)
+        .then(response => {
+          this.chars = response.data;
       });
     }
   },
-  mounted() {
-    this.getChars()
-  }
+
 };
 </script>
  
