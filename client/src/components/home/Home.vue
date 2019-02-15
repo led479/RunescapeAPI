@@ -6,7 +6,6 @@
         <div>
           <span v-for="(skillStats, skillName) in char.stats" :key="skillName">{{ skillName }}: {{skillStats.level}} </span>
         </div>
-
       </div>
     </div>
   </div>
