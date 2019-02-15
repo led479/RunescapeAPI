@@ -57,8 +57,8 @@ exports.import_char = function(req, res) {
     request(url, function (error, response) {
         let res_body = JSON.parse(response.body);
         if (res_body['status'] === 'failure')
-            res.send({ 'error': res_body['message'] });
-        if (res_body['status'] === 'success') {
+            res.status(422).send({ 'error': res_body['message'] });
+        else if (res_body['status'] === 'success') {
             var new_char = new Char(adiciona_login(res_body, req.params.login));
             new_char.save(function(err, char) {
                 if (err) res.send(err);
