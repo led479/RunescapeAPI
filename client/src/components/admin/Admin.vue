@@ -1,9 +1,20 @@
 <template>
   <div class="admin">
     <span>Add new Char</span>
-    <b-form>
-      <b-form-input v-model="char.login" placeholder="Login"></b-form-input>
-      <b-button @click="postChar">Add</b-button>
+
+    <b-form inline>
+      <label class="sr-only">Name</label>
+      <b-input v-model="char.login" placeholder="Login" class="mb-2 mr-sm-2 mb-sm-0"/>
+      <b-button variant="primary" @click="postChar">Add</b-button>
+    </b-form>
+
+    <div style="padding-top: 20px;">
+      <span>Delete Char</span>
+    </div>
+    <b-form inline>
+      <label class="sr-only">Name</label>
+      <b-input v-model="char.login" placeholder="Login" class="mb-2 mr-sm-2 mb-sm-0"/>
+      <b-button variant="danger" @click="delChar">Delete</b-button>
     </b-form>
   </div>
 </template>
@@ -17,7 +28,7 @@ export default {
   data() {
     return {
       char: {
-          login: ''
+        login: ""
       }
     };
   },
@@ -27,16 +38,23 @@ export default {
         alert("Preencha o campo Login.");
         event.preventDefault();
       } else {
-        axios
-          .post(`${baseAPiUrl}/chars`, this.char)
-          .then(() => { this.$router.push( {name: 'Home' } )
+        axios.post(`${baseAPiUrl}/chars`, this.char).then(() => {
+          this.$router.push({ name: "Home" });
         });
       }
     },
-
-  },
+    deleteChar() {
+      if (this.char.login === "") {
+        alert("Preencha o campo Login.");
+        event.preventDefault();
+      } else {
+        axios.delete(`${baseAPiUrl}/chars/:login`, this.char).then(() => {
+          this.$router.push({ name: "Home" });
+        });
+      }
+    }
+  }
 };
 </script>
-   
 <style>
 </style>
