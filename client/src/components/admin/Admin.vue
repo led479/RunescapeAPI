@@ -1,10 +1,10 @@
 <template>
   <div class="admin">
-    <span>aloloaloa</span>
-    <li v-for="post of posts" :key="post.id">
-      <input type="text" name value v-model="name">
-      <button type="submit" name="button">Submit</button>
-    </li>
+    <span>Add new Char</span>
+    <form v-on:submit="sub" action="#" method="post">
+      <input v-model="login" placeholder="Login">
+      <button type="submit">Add</button>
+    </form>
   </div>
 </template>
 
@@ -16,10 +16,23 @@ export default {
   name: "Admin",
   data() {
     return {
-      postBody: ""
+      login: ""
     };
   },
   methods: {
+    sub: function(event) {
+      if (this.login == "") {
+        alert("Preencha o campo Login.");
+        event.preventDefault();
+      } else {
+        axios
+          .post(`${baseAPiUrl}/chars`, {
+            login: this.login
+          })
+          .then(response => {});
+      }
+    },
+
     postChar() {
       axios
         .post(`${baseAPiUrl}/chars`, {
