@@ -1,9 +1,8 @@
 <template>
   <div class="Home">
-    <h1> ass </h1>
+    <h1>ass</h1>
     <div class="columns medium-4" v-for="(value, key) in results" :key="value.id">
       <div class="charStats">
-        
         <p>{{ key }}: {{ value }}</p>
       </div>
     </div>
@@ -13,7 +12,7 @@
 <script>
 import axios from "axios";
 
-const url = "http://localhost:3000/chars/";
+import { baseAPiUrl } from "@/global";
 
 export default {
   name: "Home",
@@ -23,10 +22,15 @@ export default {
       results: {}
     };
   },
+  methods: {
+    getChars() {
+      axios.get(`${baseAPiUrl}/chars`).then(response => {
+        this.results = response.data;
+      });
+    }
+  },
   mounted() {
-    axios.get(url).then(response => {
-      this.results = response.data;
-    });
+    this.getChars()
   }
 };
 </script>
