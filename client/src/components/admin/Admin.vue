@@ -13,8 +13,8 @@
     </div>
     <b-form inline>
       <label class="sr-only">Name</label>
-      <b-input v-model="char.login" placeholder="Login" class="mb-2 mr-sm-2 mb-sm-0"/>
-      <b-button variant="danger" @click="delChar">Delete</b-button>
+      <b-input v-model="char.loginDel" placeholder="Login" class="mb-2 mr-sm-2 mb-sm-0"/>
+      <b-button variant="danger" @click="deleteChar">Delete</b-button>
     </b-form>
   </div>
 </template>
@@ -44,11 +44,11 @@ export default {
       }
     },
     deleteChar() {
-      if (this.char.login === "") {
+      if (this.char.loginDel === "") {
         alert("Preencha o campo Login.");
         event.preventDefault();
       } else {
-        axios.delete(`${baseAPiUrl}/chars/:login`, this.char).then(() => {
+        axios.delete(`${baseAPiUrl}/chars/` + this.char.loginDel).then(() => {
           this.$router.push({ name: "Home" });
         });
       }
