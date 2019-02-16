@@ -13,8 +13,8 @@ export default {
 <style>
     .footer {
         grid-area: footer;
-        background-color: rgb(44, 44, 44);
-        color: rgb(168, 168, 168);
+        background: linear-gradient(to right, #c54157, #c8223e);
+        color: rgba(255, 255, 255, 0.815);
 
         display: flex;
         justify-content: flex-end;

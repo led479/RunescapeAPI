@@ -1,6 +1,7 @@
 <template>
   <div class="menu">
     <aside class="menur" v-show="isMenuVisible">
+      <router-link class="menu_link" :to="{ name: 'Home' }">Home</router-link>
       <router-link class="menu_link" :to="{ name: 'Admin' }">Admin Chars</router-link>
       <router-link class="menu_link" :to="{ name: 'ImportChar' }">Import Char</router-link>
     </aside>
