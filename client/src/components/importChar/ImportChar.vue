@@ -26,8 +26,8 @@ export default {
     postChar() {
       this.$Progress.start()
       if (this.login === "") {
-        alert("Preencha o campo Login.");
-        event.preventDefault();
+        this.error = "Preencha o campo Login.";
+        this.$Progress.finish()
       } else {
         axios
           .post(`${baseAPiUrl}/chars/import/` + this.login)
