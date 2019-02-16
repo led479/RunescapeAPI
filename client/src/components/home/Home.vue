@@ -2,6 +2,7 @@
   <div class="Home">
     <div class="columns medium-4" v-for="char in chars" :key="char.login">
       <div class="charStats">
+        
         <h2 id="name">{{ char.login }}</h2>
         <div class="char_skills">
           <span v-for="(skillStats, skillName) in char.stats" :key="skillName">
@@ -9,6 +10,7 @@
             <br>
           </span>
         </div>
+        <br>
       </div>
     </div>
   </div>
