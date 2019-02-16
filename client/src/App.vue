@@ -1,6 +1,8 @@
 <template>
   <div id="app" :class="{'hide-menu': !isMenuVisible}">
+
     <Header title="LUL" :hideToggle="false"/>
+    <vue-progress-bar></vue-progress-bar>
     <Menu />
     <Content />
     <Footer />

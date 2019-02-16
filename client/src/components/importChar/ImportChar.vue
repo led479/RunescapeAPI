@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     postChar() {
+      this.$Progress.start()
       if (this.login === "") {
         alert("Preencha o campo Login.");
         event.preventDefault();
@@ -32,9 +33,11 @@ export default {
           .post(`${baseAPiUrl}/chars/import/` + this.login)
           .then(() => {
             this.$router.push({ name: "Home" });
+            this.$Progress.finish()
           })
           .catch(error => {
             this.error = error.response.data.error;
+            this.$Progress.finish()
           });
       }
     }
