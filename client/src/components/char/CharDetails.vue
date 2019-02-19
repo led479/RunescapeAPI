@@ -9,7 +9,10 @@
         &nbspXP: {{ numberWithCommas(skillStats.experience) }}
         <br>
         <b-progress class="mt-2" :max="max">
-          <b-progress-bar :value="(skillStats.experience)" show-progress variant="danger"></b-progress-bar>
+          <b-progress-bar :value="(skillStats.experience)"
+                          :label="(((skillStats.experience) / max)* 100).toFixed(1) + '%'"
+                          show-progress
+                          variant="danger"></b-progress-bar>
         </b-progress>
       </span>
     </div>
@@ -49,7 +52,7 @@ export default {
       type: Object
     }
   },
-  data(level) {
+  data() {
     return {
       max: 13034431
     };
@@ -63,78 +66,52 @@ export default {
     },
     getLogo(logo) {
       switch (logo) {
-        case "attack":
-          return attack;
-          break;
-        case "construction":
-          return construction;
-          break;
-        case "crafting":
-          return crafting;
-          break;
-        case "defence":
-          return defence;
-          break;
-        case "farming":
-          return farming;
-          break;
-        case "firemaking":
-          return firemaking;
-          break;
-        case "fishing":
-          return fishing;
-          break;
-        case "fletching":
-          return fletching;
-          break;
-        case "herblore":
-          return herblore;
-          break;
-        case "hitpoints":
-          return hitpoints;
-          break;
-        case "hunter":
-          return hunter;
-          break;
-        case "magic":
-          return magic;
-          break;
-        case "mining":
-          return mining;
-          break;
-        case "mining":
-          return mining;
-          break;
-        case "prayer":
-          return prayer;
-          break;
-        case "runecrafting":
-          return runecrafting;
-          break;
-        case "slayer":
-          return slayer;
-          break;
-        case "smithing":
-          return smithing;
-          break;
-        case "strength":
-          return strength;
-          break;
-        case "thieving":
-          return thieving;
-          break;
-        case "woodcutting":
-          return woodcutting;
-          break;
-        case "cooking":
-          return cooking;
-          break;
-        case "ranged":
-          return ranged;
-          break;
         case "agility":
           return agility;
-          break;
+        case "attack":
+          return attack;
+        case "construction":
+          return construction;
+        case "cooking":
+          return cooking;
+        case "crafting":
+          return crafting;
+        case "defence":
+          return defence;
+        case "farming":
+          return farming;
+        case "firemaking":
+          return firemaking;
+        case "fishing":
+          return fishing;
+        case "fletching":
+          return fletching;
+        case "herblore":
+          return herblore;
+        case "hitpoints":
+          return hitpoints;
+        case "hunter":
+          return hunter;
+        case "magic":
+          return magic;
+        case "mining":
+          return mining;
+        case "prayer":
+          return prayer;
+        case "runecrafting":
+          return runecrafting;
+        case "slayer":
+          return slayer;
+        case "smithing":
+          return smithing;
+        case "strength":
+          return strength;
+        case "thieving":
+          return thieving;
+        case "woodcutting":
+          return woodcutting;
+        case "ranged":
+          return ranged;
         default:
           break;
       }
