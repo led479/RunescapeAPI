@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="char_stats">
     <h2 id="name">{{ char.login }}</h2>
     <div class="char_skills">
@@ -9,6 +10,19 @@
          &nbspXP: {{ skillStats.experience }}
       </span>
     </div>
+=======
+  <div>
+    <b-card class="card_char">
+      <h2 id="name">{{ char.login }}</h2>
+      <div class="char_skills">
+        <span v-for="(skillStats, skillName) in char.stats" :key="skillName">
+          <h4>{{ capitalize(skillName) }}</h4>
+          <ul>Level: {{ skillStats.level }}</ul>
+          <ul>XP: {{ numberWithCommas(skillStats.experience) }}</ul>
+        </span>
+      </div>
+    </b-card>
+>>>>>>> 829700ce22f58c574624ad0ee51cc73dba0ea176
     <br>
   </div>
 </template>
@@ -46,6 +60,7 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
     getLogo(logo) {
       switch (logo) {
         case "attack":
@@ -123,12 +138,20 @@ export default {
         default:
           break;
       }
+=======
+    capitalize(string) {
+      return string[0].toUpperCase() + string.slice(1);
+    },
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+>>>>>>> 829700ce22f58c574624ad0ee51cc73dba0ea176
     }
   }
 };
 </script>
 
 <style>
+<<<<<<< HEAD
 .char_stats {
   border: 1px solid #ccc;
   background: linear-gradient(to right, #ff646442, #9474744d);
@@ -136,6 +159,15 @@ export default {
 
 .char_skills {
   display: flex;
+=======
+.card_char{
+  background: linear-gradient(to right, rgba(135, 2, 1, 0), rgba(181, 16, 9, 0.16));
+}
+.char_skills {
+  column-count: 8;
+  color: black;
+  padding: 20px;
+>>>>>>> 829700ce22f58c574624ad0ee51cc73dba0ea176
   flex-wrap: wrap;
   width: 98%;
 
@@ -161,11 +193,16 @@ export default {
   background: #000000bd;
 }
 
+.char_skills ul{
+   padding: 0;
+   margin-bottom: 10px;
+}
+
 #name {
   justify-self: flex-start;
   text-decoration: none;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   margin: 15px;
 }
