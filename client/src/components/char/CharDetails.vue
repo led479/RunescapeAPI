@@ -4,9 +4,9 @@
     <div class="char_skills">
       <span class="char_skill" v-for="(skillStats, skillName) in char.stats" :key="skillName">
         <img :src="getLogo(skillName)">
-        {{ skillName }}: {{skillStats.level}}
+        {{ capitalize(skillName) }}: {{skillStats.level}}
  <br>
-        &nbspXP: {{ skillStats.experience }}
+        &nbspXP: {{ numberWithCommas(skillStats.experience) }}
         <br>
         <b-progress class="mt-2" :max="max">
           <b-progress-bar :value="(skillStats.experience)" show-progress variant="danger"></b-progress-bar>
@@ -55,6 +55,12 @@ export default {
     };
   },
   methods: {
+    capitalize(string) {
+      return string[0].toUpperCase() + string.slice(1);
+    },
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
     getLogo(logo) {
       switch (logo) {
         case "attack":
