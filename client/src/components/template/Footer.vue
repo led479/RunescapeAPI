@@ -13,7 +13,7 @@ export default {
 <style>
     .footer {
         grid-area: footer;
-        background: linear-gradient(to right, #c54157, #c8223e);
+        background: linear-gradient(to right, rgb(19, 19, 19), #202020);
         color: rgba(255, 255, 255, 0.815);
 
         display: flex;

@@ -11,16 +11,6 @@ var CharSchema = new Schema({
         required: 'Digite o login'
     },
     stats: {
-        overall: {
-            level: {
-                type: Number,
-                default: 1
-            },
-            experience: {
-                type: Number,
-                default: 1
-            }
-        },
         attack: {
             level: {
                 type: Number,
@@ -62,6 +52,16 @@ var CharSchema = new Schema({
             }
         },
         prayer: {
+            level: {
+                type: Number,
+                default: 1
+            },
+            experience: {
+                type: Number,
+                default: 1
+            }
+        },
+        smithing: {
             level: {
                 type: Number,
                 default: 1
@@ -240,7 +240,17 @@ var CharSchema = new Schema({
                 type: Number,
                 default: 1
             }
-        }
+        },
+        overall: {
+            level: {
+                type: Number,
+                default: 1
+            },
+            experience: {
+                type: Number,
+                default: 1
+            }
+        },
     }
 });
 // CharSchema.methods.totalLvl = function () {
@@ -250,5 +260,6 @@ var CharSchema = new Schema({
 CharSchema.methods.expToLvl99 = function(skill) {
     return 13034431 - this['stats'][skill]['experience'];
 };
+
 
 module.exports = mongoose.model('Chars', CharSchema);

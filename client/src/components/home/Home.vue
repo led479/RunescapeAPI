@@ -35,8 +35,8 @@ export default {
  <style>
 .content {
   grid-area: content;
-  background: linear-gradient(to right, #ece9e6, #ffffff);
-  padding: 20px;
+  background: #ece9e6;
+  padding: 10px;
 }
 
 .card-section > p {
