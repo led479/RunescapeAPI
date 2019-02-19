@@ -35,7 +35,7 @@ export default {
  <style>
 .content {
   grid-area: content;
-  background: #ece9e6;
+  background: linear-gradient(to right, #ece9e6);
   padding: 10px;
 }
 
