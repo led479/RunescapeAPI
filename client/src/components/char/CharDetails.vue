@@ -8,9 +8,8 @@
         <br>
         XP: {{ numberWithCommas(skillStats.experience) }}
         <br>
-        <b-progress class="mt-2" :max="max">
-          <b-progress-bar v-if="skillName !== 'overall'"
-                          :value="(skillStats.experience)"
+        <b-progress v-if="skillName !== 'overall'" class="mt-2" :max="max">
+          <b-progress-bar :value="(skillStats.experience)"
                           :label="(((skillStats.experience) / max)* 100).toFixed(1) + '%'"
                           show-progress
                           variant="danger"></b-progress-bar>
