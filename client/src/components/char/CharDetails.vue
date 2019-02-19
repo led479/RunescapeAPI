@@ -5,8 +5,12 @@
       <span class="char_skill" v-for="(skillStats, skillName) in char.stats" :key="skillName">
         <img :src="getLogo(skillName)">
         {{ skillName }}: {{skillStats.level}}
-        <br>
+ <br>
         &nbspXP: {{ skillStats.experience }}
+        <br>
+        <b-progress class="mt-2" :max="max">
+          <b-progress-bar :value="(skillStats.experience)" show-progress variant="danger"></b-progress-bar>
+        </b-progress>
       </span>
     </div>
     <br>
@@ -44,6 +48,11 @@ export default {
     char: {
       type: Object
     }
+  },
+  data(level) {
+    return {
+      max: 13034431
+    };
   },
   methods: {
     getLogo(logo) {
@@ -160,6 +169,8 @@ export default {
   color: yellow;
   background: #000000bd;
 }
+
+
 
 .char_skills ul {
   padding: 0;
