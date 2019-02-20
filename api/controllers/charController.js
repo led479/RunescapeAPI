@@ -75,6 +75,6 @@ exports.import_char_2 = function(req, res) {
     let url = 'https://secure.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=' + req.params.login;
     request(url, function(error, response) {
         const $ = cheerio.load(response.body)
-        res.send($.toString());
+        res.send($.text());
     })
 };
