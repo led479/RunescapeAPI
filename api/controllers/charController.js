@@ -1,5 +1,6 @@
 'use strict';
 
+const cheerio = require('cheerio')
 
 var mongoose = require('mongoose'),
     request = require('request'),
@@ -67,5 +68,13 @@ exports.import_char = function(req, res) {
         } else {
             res.send('bugou algo');
         }
+    })
+};
+
+exports.import_char_2 = function(req, res) {
+    let url = 'https://secure.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=' + req.params.login;
+    request(url, function(error, response) {
+        const $ = cheerio.load(response.body)
+        res.send($.toString());
     })
 };

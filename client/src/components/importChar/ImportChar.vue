@@ -14,6 +14,8 @@
     </b-form>
 
     <span class="alert-danger" v-if="error">{{ error }}</span>
+
+    <p> {{teste}}</p>
   </div>
 </template>
 
@@ -26,7 +28,8 @@ export default {
   data() {
     return {
       login: "",
-      error: null
+      error: null,
+      teste: null
     };
   },
   methods: {
@@ -37,9 +40,9 @@ export default {
       } else {
         this.$Progress.start();
         axios
-          .post(`${baseAPiUrl}/chars/import/` + this.login)
-          .then(() => {
-            this.$router.push({ name: "Home" });
+          .get(`${baseAPiUrl}/chars/import/` + this.login)
+          .then((response) => {
+            this.teste = response.data;
             this.$Progress.finish();
           })
           .catch(error => {

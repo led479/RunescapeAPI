@@ -17,5 +17,6 @@ module.exports = function(app) {
     //     .get(charList.char_total_lvl);
 
     app.route('/chars/import/:login')
-        .post(charList.import_char);
+        .post(charList.import_char)
+        .get(charList.import_char_2);
 };
